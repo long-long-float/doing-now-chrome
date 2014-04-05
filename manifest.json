@@ -14,7 +14,7 @@
     }
   ],
   "background": {
-    "scripts": ["jquery-2.1.0.min.js", "bootstrap.min.js"]
+    "scripts": ["jquery-2.1.0.min.js", "bootstrap.min.js", "background.js"]
   },
   "permissions": [
     "http://*/*", "https://*/*",

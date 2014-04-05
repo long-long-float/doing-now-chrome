@@ -31,3 +31,4 @@ $ ->
         $main.append($updateDoingText(), $edit_btn)
 
   $('#main').append($doing_text, $edit_btn)
+

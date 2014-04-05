@@ -1,3 +1,8 @@
 #main {
   width: 300px;
 }
+
+.default-text {
+  font-style: italic;
+  color: #ccc;
+}

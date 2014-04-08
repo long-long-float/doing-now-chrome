@@ -1,8 +1,20 @@
 #main {
   width: 300px;
+  height: 70px;
+  padding:5px;
+  border-color:#cccccc;
+  border-width:1px;
+  border-style:solid;
+  background:#F7F7F7;
 }
 
 .default-text {
   font-style: italic;
   color: #ccc;
+}
+
+.buttons {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
 }

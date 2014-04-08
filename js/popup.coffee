@@ -9,6 +9,11 @@ $ ->
 
   #functions
 
+  modes = ['show', 'edit']
+  changeMode = (modename) ->
+    for mode in modes
+      $("##{mode}-mode").css(display: if modename == mode then '' else 'none')
+
   updateDoingText = (text) ->
     if text
       $doing_text.text(text).removeClass('default-text')
@@ -21,36 +26,29 @@ $ ->
 
   save_and_show_mode = ->
     cstorage.set doing_text: $doing_input.val(), ->
-      $main.children().detach()
       loadDoingText()
-      $main.append(showGroup)
+      changeMode 'show'
 
   #elements
 
-  $doing_text = $('<div>')
-  $doing_input = $('<input>').attr(type: 'text')
+  $doing_text = $('#doing-text')
+  $doing_input = $('#doing-input')
     .keypress (e) ->
       if e.which == 13
         save_and_show_mode()
 
-  $edit_btn = $('<button>').text('edit')
+  $edit_btn = $('#edit-btn')
     .click ->
       cstorage.get 'doing_text', (obj) ->
-        $main.children().detach()
         $doing_input.val(obj.doing_text)
-        $main.append(editGroup)
-  $save_btn = $('<button>').text('save')
+        changeMode 'edit'
+  $save_btn = $('#save-btn')
     .click ->
       save_and_show_mode()
-  $finish_btn = $('<button>').text('finish!')
+  $finish_btn = $('#finish-btn')
     .click ->
       cstorage.set doing_text: '', ->
         updateDoingText('')
 
   #initialize
-
-  showGroup = [$doing_text, $edit_btn, $finish_btn]
-  editGroup = [$doing_input, $save_btn]
-
-  $('#main').append(showGroup)
   loadDoingText()

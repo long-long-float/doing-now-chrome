@@ -3,4 +3,13 @@
 <script src="js/lib/jquery-2.1.0.min.js"></script>
 <script src="js/popup.js"></script>
 
-<div id="main"></div>
+<div id="main">
+  <div id="show-mode">
+    <div id="doing-text"></div>
+    <button id="edit-btn">edit</button><button id="finish-btn">finish!</button>
+  </div>
+  <div id="edit-mode" style="display:none;">
+    <input type="text" id="doing-input">
+    <button id="save-btn">save</button>
+  </div>
+</div>

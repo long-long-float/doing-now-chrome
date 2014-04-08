@@ -15,7 +15,7 @@ $ ->
 
   $doing_input = $('<input>').attr(type: 'text')
 
-  btn_class = 'btn btn-default btn-sm'
+  btn_class = '' #'btn btn-default btn-sm'
   $edit_btn = $('<button>')
     .attr(type: 'button', class: btn_class).text('edit')
     .click ->

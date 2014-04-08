@@ -10,11 +10,11 @@
   "content_scripts": [
     {
       "matches": ["http://*/*"],
-      "js": ["popup.js"]
+      "js": ["js/popup.js"]
     }
   ],
   "background": {
-    "scripts": ["jquery-2.1.0.min.js", "bootstrap.min.js", "background.js"]
+    "scripts": ["js/lib/jquery-2.1.0.min.js", "js/background.js"]
   },
   "permissions": [
     "http://*/*", "https://*/*",

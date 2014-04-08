@@ -25,9 +25,20 @@ $ ->
       updateDoingText(obj.doing_text)
 
   save_and_show_mode = ->
-    cstorage.set doing_text: $doing_input.val(), ->
-      loadDoingText()
-      changeMode 'show'
+    text = $doing_input.val()
+
+    if m = text.match /([\w-]+)#(\d+)/
+      [_, repo, issue] = m
+      cstorage.get 'github_username', (items) ->
+        $.getJSON "https://api.github.com/repos/#{items.github_username}/#{repo}/issues/#{issue}"
+          .done (issue) ->
+            cstorage.set doing_text: "#{repo}##{issue.number} #{issue.title}", ->
+              loadDoingText()
+              changeMode 'show'
+    else
+      cstorage.set doing_text: text, ->
+        loadDoingText()
+        changeMode 'show'
 
   #elements
 

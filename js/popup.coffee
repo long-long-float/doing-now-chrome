@@ -1,5 +1,6 @@
 $ ->
   #variables
+
   cstorage = chrome.storage.local
 
   $main = $('#main')
@@ -18,10 +19,19 @@ $ ->
     cstorage.get 'doing_text', (obj) ->
       updateDoingText(obj.doing_text)
 
+  save_and_show_mode = ->
+    cstorage.set doing_text: $doing_input.val(), ->
+      $main.children().detach()
+      loadDoingText()
+      $main.append(showGroup)
+
   #elements
 
   $doing_text = $('<div>')
   $doing_input = $('<input>').attr(type: 'text')
+    .keypress (e) ->
+      if e.which == 13
+        save_and_show_mode()
 
   $edit_btn = $('<button>').text('edit')
     .click ->
@@ -31,10 +41,7 @@ $ ->
         $main.append(editGroup)
   $save_btn = $('<button>').text('save')
     .click ->
-      cstorage.set doing_text: $doing_input.val(), ->
-        $main.children().detach()
-        loadDoingText()
-        $main.append(showGroup)
+      save_and_show_mode()
   $finish_btn = $('<button>').text('finish!')
     .click ->
       cstorage.set doing_text: '', ->

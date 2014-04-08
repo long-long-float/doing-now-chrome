@@ -6,7 +6,7 @@ $ ->
   $doing_text = $('<div>')
   $updateDoingText = ->
     cstorage.get 'doing_text', (obj) ->
-      if obj.doing_text and obj.doing_text != ''
+      if obj.doing_text
         $doing_text.text(obj.doing_text).removeClass('default-text')
       else
         $doing_text.text('Write what are you doing.').addClass('default-text')
